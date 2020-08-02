@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+*{
+    margin: auto;
+    padding:0px;
+    font-family: "Roboto", sans-serif; 
+}
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url("../_img/fundo.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+
+div.row ul.main-nav li a{
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+    margin:auto 5px; 
+    font-weight: bold;
+    color:#718a9e;
+    text-shadow: 1px 1px #152836;
+    background-color: #b9ccd2;
+    transition: 0.6s;
+}
+
+div.row ul.main-nav li a:hover{
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+div.row ul.main-nav{
+    list-style-type: none;
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    
+}
+
+div.row ul li{
+    display: inline-block;
+    
+}
+
+li#ativo a{
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+div.logo img{
+    width: 225px;
+    padding:0px;
+    margin: -15px 0px;
+    height: auto;
+    float:left;
+}
+
+.row{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.here{
+    position: absolute;
+    text-align: center;
+    display: block;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+body div.here h1{
+    text-transform: uppercase;
+    color:#718a9e;
+    font-size: 70px;
+    text-align: center;
+    text-shadow: 2px 2px #152836;
+    
+}
+
+.btn{
+   text-decoration: none;
+   display: inline-block;    
+    
+    
+}
+
+.button{
+    position: absolute;
+    text-align: center;
+    display: block;
+    top: 60%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.button a{
+    font-weight: bold;
+    color:#718a9e;
+    text-shadow: 1px 1px #152836;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #fff;
+    transition: 0.6s;
+}
+
+.button a:hover{
+    background-color: #b9ccd2;
+    border: 2px solid #b9ccd2;
+}
