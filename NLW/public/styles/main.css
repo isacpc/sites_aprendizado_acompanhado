@@ -1,0 +1,63 @@
+:root{ /*elemento principal(raiz) do html inteiro, abrindo um escopo*/
+    --color-background: #F0F0F7;                /* -- Define uma variável*/
+    --color-primary-lighter: #9871F5;
+    --color-primary-light: #916BEA;
+    --color-primary: #8257E5;
+    --color-primary-dark: #774DD6;
+    --color-primary-darker: #6842c2;
+    --color-secondary: #04D361;
+    --color-secondary-dark: #04BF58;
+    --color-title-in-primary: #FFFFFF;
+    --color-text-in-primary: #D4C2FF;
+    --color-text-title: #32264D;
+    --color-text-complement: #9C98A6;
+    --color-text-base: #6A6180;
+    --color-line-in-white: #E6E6F0;
+    --color-input-background: #F8F8FC;
+    --color-button-text: #FFFFFF;
+    --color-box-base: #FFFFFF;
+    --color-box-footer: #FAFAFC;
+    --color-small-info: #C1BCCC;
+
+    /*tamanho da fonte padrão: 16px - 100% - 1rem*/
+    font-size: 60%; /* controle das medidas rem */      /*PORCENTAGENS PARA RESPONSIVIDADE*/
+    /*rem é uma udinade relativa que toma como base a medida  setada no elemento body, exemplo[body{ font size: 10px;} , body div{ font-size: 0.8rem}] nesse exemplo a fonte da div terá 8px(80% de 10px)*/
+    /*a em toma como base as medidas do elemento pai*/
+
+
+}
+
+
+*{      /* o * indica qualquer elemento*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*por padrão é setado como content-box, a largura vai ser a que vc especificou, e paddings e bordas serão somadas a esse valor. Em border-box, tudo(width da div+padding+border) deve estar dentro da width especificada, ele começa a somar a partir da borda*/
+}
+
+html, body{
+    height: 100vh;  /*100% da visão em altura da tela*/
+}
+
+
+body {
+    background: var(--color-background);
+    display: flex;      /*todos os elemenos dentro de body tem que ser flexíveis, ficaram um ao lado do outro, claro, que é relativo ao widht da div(é necessário as propriedades abaixo)*/
+    align-items: center; /*vertical position*/    /*só pode ser usado se o display flex estiver ativado*/
+    justify-content: center; /*jusfica os itens ao meio, pelo que e entendi, ele meio que faz tipo justificar <p>, tentando ajustar elementos ao centroda div, não no body(como no align-items)*/ /*só pode ser usado se o display flex/grid estiver ativado*/
+}
+
+body, input, button, textarea {
+    font: 500/*font-weight*/ 1.6rem/*font-size*/ Poppins/*font-family*/;
+    color: var(--color-text-base);
+}
+
+#container{
+    width: 90vw;
+    max-width: 700px;
+}
+
+@media (min-width: 700px) { /*config de 70 pra cima*/
+    :root {
+        font-size: 62.5%;   /*todo 1rem vai ser relativo a 10px 62,5%16 = 10*/
+    }
+}

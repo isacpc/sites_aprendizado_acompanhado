@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">  <!--lang é um atributo-->
+<head>
+    <meta charset="UTF-8"/>   <!--meta define atributos específicos da página-->
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/styles/partials/header.css">
+    <link rel="stylesheet" type="text/css" href="/styles/partials/page-study.css">
+    <link rel="stylesheet" type="text/css" href="/styles/partials/forms.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <title>Proffy | Sua Plataforma de Estudos Online</title>
+
+</head>
+<body id="page-study">
+
+    <div id="container">      <!--Div que envolve todo conteúdo-->
+        <header class="page-header">          <!--cabeçalho em geral-->
+            <div class="top-bar-container">   <!--parte mais superior que envolve o logo, e a seta back-->
+                <a href="/">      <!--link que envolve img de back-->
+                    <img src="/images/icons/back.svg" alt="Voltar">
+                </a>
+                <img src="/images/logo.svg" alt="">   
+            </div>
+
+            <div class="header-content">      <!--parte baixa/principal do header, envolvendo inputs,labels,selects, strong-->
+                <strong>Esses são os proffys disponíveis</strong>  <!--"Título"-->
+                <form id="search-teachers">      
+                    <div class="select-block">    <!--envolve label+selects-->
+                        <label for="subject">Matéria</label>
+                        <select name="subject" id="subject">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+
+                            {%for subject in subjects %}  <!--quando roda deixa um obj(loop.index) com valores crescentes-->
+                            <option value="{{loop.index}}" {{ "selected" if filters.subject == loop.index }} >
+                                {{subject}}
+                            </option>
+                            {%endfor%}
+                            <!--ANTES DO BACKEND
+                            <option value="1" {{ "selected" if filters.subject == "1"}}>Artes</option>
+                            <option value="2" {{ "selected" if filters.subject == "2"}}>Biologia</option>
+                            <option value="3" {{ "selected" if filters.subject == "3"}}>Ciências</option>
+                            <option value="4" {{ "selected" if filters.subject == "4"}}>Educação física</option>
+                            <option value="5" {{ "selected" if filters.subject == "5"}}>Física</option>
+                            <option value="6" {{ "selected" if filters.subject == "6"}}>Geografia</option>
+                            <option value="7" {{ "selected" if filters.subject == "7"}}>História</option>
+                            <option value="8" {{ "selected" if filters.subject == "8"}}>Matemática</option>
+                            <option value="9" {{ "selected" if filters.subject == "9"}}>Português</option>
+                            <option value="10" {{ "selected" if filters.subject == "10"}}>Química</option> -->
+                            <!--podia ser assim {{ "selected" if filters.subject == "10"}} pro backend, mas é mais interessante usar loop-->
+                        </select>
+                    </div>
+                    <div class="select-block">
+                        <label for="weekday">Dia da semana</label>
+                        <select name="weekday" id="weekday">
+                            {%for weekday in weekdays %}  
+                                <option value="{{loop.index0}}" {{ "selected" if filters.weekday == loop.index }} >
+                                    {{weekday}}
+                                </option>
+                            {%endfor%}
+                            <!-- <option value="" disabled="" hidden="">Selecione uma opção</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-feira</option>
+                            <option value="2">Terça-feira</option>
+                            <option value="3">Quarta-feira</option>
+                            <option value="4">Quinta-feira</option>
+                            <option value="5">Sexta-feira</option>
+                            <option value="6">Sábado</option> -->
+                        </select>
+                    </div>
+                    <div class="input-block">    <!--label+input-->
+                        <label for="time">Hora</label>
+                        <input name="time" id="time" type="time" value="{{filters.time}}">
+                    </div>
+                    <button type="submit">Filtrar</button>
+                </form>
+            </div>
+        </header>
+
+        <main>    <!--conteúdo principal envolvendo todos os articles, sem class pois não há mais mains na página-->
+            {% if proffys == "" %}
+                <p class="no-results">Nenhum professor encontrado com a sua pesquisa</p>
+            {% else %}
+            {%for proffy in proffys %}<!--com nunjucks do nodejs-->
+                <article class="teacher-item">  <!--header da caixa de apresentação+parágrafo de apresentação+footer-->
+                <header>     <!--img/avatar + div(nome em strong+matéria)-->
+                    <img src="{{proffy.avatar}}" alt="{{proffy.name}}">
+                    <div> <!--div(nome em strong+matéria) sem class, pois ela é muito específica e pode ser encontrada por hierarquia sem interferir em outras div da página-->
+                        <strong>{{proffy.name}}</strong>
+                        <span>{{proffy.subject}}</span>
+                    </div>
+                </header>
+
+                <p>{{proffy.bio}}</p>
+
+                <footer>  <!--<p> de preço+button de contato-->
+                    <p>Preço/hora<strong>R$ {{proffy.cost}}</strong></p>
+                    <a href="https://api.whatsapp.com/send?1=pt_BR&phone=SS{{proffy.whatsapp}}&text=Tenho interesse na sua aula de {{proffy.subject}} {{proffy.name}}" class="button" target="_blank">
+                        <img src="/images/icons/whatsapp.svg" alt="Whatsapp"> Entrar em Contato    
+                    </a>
+                    <!-- antes do backend ====  
+                    <button type="button">
+                        <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
+                    </button> -->
+                </footer>
+                </article>
+            {%endfor%}
+
+            {% endif %}
+            
+        </main>
+    </div>
+<!--elementos que necesssitam de posicionamento, ou em conjunto ou mesmo individual, precisam estar em uma div por exemplo-->
+</body>
+</html>
